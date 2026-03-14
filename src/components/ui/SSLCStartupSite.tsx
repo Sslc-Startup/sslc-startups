@@ -9,29 +9,33 @@ import { motion } from "framer-motion";
 
 /*
 SSLC STARTUP WEBSITE
-Upgrades Added:
-• AI style animated hero
-• Real portfolio projects
+Enhanced Features:
+• Animated SVG logo
+• AI style animated background
+• Portfolio projects
 • Developer dashboard preview
-• Floating AI chatbot support
-• Responsive SaaS layout
-• Contact info integrated
+• Floating AI chatbot
+• Responsive SaaS UI
 */
 
 function Logo() {
   return (
-    <div className="flex items-center gap-2">
-      <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
-        <rect width="100" height="100" rx="20" fill="#2563EB" />
-        <path
-          d="M30 65L45 35L60 65"
-          stroke="white"
-          strokeWidth="6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span className="font-bold text-lg text-blue-600">SSLC Startup</span>
+    <div className="flex flex-col leading-tight">
+      <div className="flex items-center gap-2">
+        <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+          <rect width="100" height="100" rx="20" fill="#2563EB" />
+          <path
+            d="M30 65L45 35L60 65"
+            stroke="white"
+            strokeWidth="6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span className="font-bold text-lg text-blue-600">SSLC Startup</span>
+      </div>
+
+      <span className="text-xs text-slate-500">Build • Secure • Deployed</span>
     </div>
   );
 }
@@ -42,26 +46,22 @@ export default function SSLCStartupSite() {
   const [service, setService] = useState("");
   const [message, setMessage] = useState("");
 
-  /* chatbot state */
+  /* AI chatbot */
   const [chatOpen, setChatOpen] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [messages, setMessages] = useState([
-    { role: "bot", text: "Hi 👋 I'm SSLC AI. How can I help you?" },
+    { role: "bot", text: "Hi 👋 I'm SSLC AI assistant." },
   ]);
 
   function sendChat() {
     if (!chatInput) return;
 
-    const newMessages = [
+    setMessages([
       ...messages,
       { role: "user", text: chatInput },
-      {
-        role: "bot",
-        text: "Thanks for your message! Our team will contact you soon.",
-      },
-    ];
+      { role: "bot", text: "Thanks! Our team will contact you soon." },
+    ]);
 
-    setMessages(newMessages);
     setChatInput("");
   }
 
@@ -107,7 +107,8 @@ export default function SSLCStartupSite() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900">
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-slate-100 text-slate-900 overflow-x-hidden">
+
       {/* NAVBAR */}
       <nav className="flex flex-col md:flex-row md:justify-between items-center px-6 md:px-10 py-6 border-b bg-white/80 backdrop-blur gap-4">
         <Logo />
@@ -122,11 +123,39 @@ export default function SSLCStartupSite() {
 
       {/* HERO */}
       <section className="text-center py-28 px-6 relative overflow-hidden">
+
+        {/* AI animated gradient background */}
         <motion.div
-          animate={{ scale: [1, 1.3, 1] }}
-          transition={{ duration: 12, repeat: Infinity }}
-          className="absolute w-[700px] h-[700px] bg-blue-300 rounded-full blur-3xl opacity-30 top-[-200px] left-1/2 -translate-x-1/2"
+          animate={{ scale: [1, 1.4, 1], rotate: [0, 10, 0] }}
+          transition={{ duration: 14, repeat: Infinity }}
+          className="absolute w-[800px] h-[800px] bg-blue-300 rounded-full blur-3xl opacity-30 top-[-300px] left-1/2 -translate-x-1/2"
         />
+
+        {/* animated logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="flex justify-center mb-6"
+        >
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+            <motion.rect
+              width="100"
+              height="100"
+              rx="24"
+              fill="#2563EB"
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
+            <path
+              d="M30 65L45 35L60 65"
+              stroke="white"
+              strokeWidth="6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -134,12 +163,11 @@ export default function SSLCStartupSite() {
           transition={{ duration: 0.8 }}
           className="text-4xl md:text-6xl font-bold mb-6"
         >
-          Build AI‑Ready Software
+          SSLC Startup
         </motion.h1>
 
         <p className="max-w-2xl mx-auto text-lg text-slate-600 mb-10">
-          SSLC Startup builds modern SaaS platforms, developer tools and
-          scalable web applications.
+          Build • Secure • Deployed
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -273,8 +301,9 @@ export default function SSLCStartupSite() {
 
       {/* FOOTER */}
       <footer className="text-center py-10 border-t text-slate-500">
-        <div>SSLC Startup</div>
-        <div className="text-sm">sslcstartup@gmail.com</div>
+        <div className="font-semibold">SSLC Startup</div>
+        <div className="text-sm">Build • Secure • Deployed</div>
+        <div className="text-sm mt-2">sslcstartup@gmail.com</div>
         <div className="text-sm">+91 7983235870</div>
         <div className="text-xs mt-2">
           © 2026 SSLC Startup — Secure Software & Smart Developers
@@ -321,6 +350,7 @@ export default function SSLCStartupSite() {
           AI
         </button>
       </div>
+
     </div>
   );
 }
